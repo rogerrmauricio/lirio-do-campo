@@ -166,7 +166,6 @@
 html{
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -186,7 +185,6 @@ body{
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
 }
 
 img{ max-width: 100%; height: auto; display: block; }
@@ -402,9 +400,7 @@ h3{ font-size: clamp(1.25rem, 2.4vw, 1.6rem); margin-bottom: var(--sp-1); }
   transition: background-color 280ms var(--ease), box-shadow 280ms var(--ease), padding 280ms var(--ease);
 }
 .site-header.is-scrolled{
-  background: rgba(250,246,238,0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--cream);
   box-shadow: 0 1px 0 var(--line);
   padding: var(--sp-1) 0;
 }
@@ -599,7 +595,7 @@ h3{ font-size: clamp(1.25rem, 2.4vw, 1.6rem); margin-bottom: var(--sp-1); }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--sp-4) var(--sp-3);
-  padding: var(--sp-5) 0;
+  padding: clamp(48px, 9vw, 96px) 0;
 }
 .stat__number{
   font-family: var(--font-display);
@@ -1165,16 +1161,20 @@ h3{ font-size: clamp(1.25rem, 2.4vw, 1.6rem); margin-bottom: var(--sp-1); }
       <span class="visually-hidden">Abrir menu</span>
     </button>
   </div>
-
-  <div class="nav__panel" id="nav-panel" data-nav-panel inert>
-    <a href="#jornada" data-nav-link>A Jornada</a>
-    <a href="#colecao" data-nav-link>A Coleção</a>
-    <a href="#look" data-nav-link>O Look</a>
-    <a href="#apoiar" data-nav-link>Como Ajudar</a>
-    <a href="#contato" data-nav-link>Contato</a>
-    <a class="btn btn--primary" href="#apoiar" data-nav-link>Apoiar agora</a>
-  </div>
 </header>
+
+<!-- O painel do menu mobile fica FORA do <header> de propósito: o header usa
+     backdrop-filter quando rolado, e backdrop-filter cria um "containing block"
+     para elementos position:fixed dentro dele, o que quebrava o
+     translateY(-100%) do painel (o conteúdo "vazava" para a tela). -->
+<div class="nav__panel" id="nav-panel" data-nav-panel inert>
+  <a href="#jornada" data-nav-link>A Jornada</a>
+  <a href="#colecao" data-nav-link>A Coleção</a>
+  <a href="#look" data-nav-link>O Look</a>
+  <a href="#apoiar" data-nav-link>Como Ajudar</a>
+  <a href="#contato" data-nav-link>Contato</a>
+  <a class="btn btn--primary" href="#apoiar" data-nav-link>Apoiar agora</a>
+</div>
 
 <main id="conteudo">
 
